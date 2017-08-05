@@ -55,9 +55,9 @@ namespace GoogleLikeWorks
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+            app.UseFacebookAuthentication(
+                appId: "807876396050803",
+                appSecret: "1effa654f5564175ff3a00fd3ed71633");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

@@ -5,44 +5,60 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Newtonsoft.Json.Linq;
+using GoogleLikeWorks.Models;
 
 namespace GoogleLikeWorks.Controllers
 {
     public class ListsController : BaseController
     {
         // GET: api/Lists
-        public IEnumerable<string> Get()
+        public IEnumerable<ListsModel> Get()
         {
-            return new string[] { "value1", "value2" };
+            var lists = ListRepository.GetAll();
+
+            return lists;
         }
 
         // GET: api/Lists/5
-        public string Get(Guid token, int id)
+        public Tuple<ListsModel, List<PagesModel>, List<TasksModel>> Get(int id)
         {
-            if (!ValidateToken(token))
-            {
-                Console.WriteLine("ValidateToken failed!");
-            }
+            var results = ListRepository.Get(id);
 
-            var lists = TestTableRepository.GetAll();
-
-            return "value";
+            return results;
         }
 
         // POST: api/Lists
-        public void Post([FromBody]string value)
+        public int Post([FromBody]ListsModel list)
         {
-            Console.WriteLine("HI");
+            var id = ListRepository.NewList(list.Title);
+
+            return id;
         }
 
         // PUT: api/Lists/5
-        public void Put(int id, [FromBody]string value)
+        public int Put(int id, [FromBody]ListsModel list)
         {
+            var result = ListRepository.Get(id);
+
+            if (result.Item1 != null)
+            {
+                var resultId = ListRepository.NewList(list.Title);
+
+                return resultId;
+            }
+            else
+            {
+                ListRepository.UpdateList(id, list.Title);
+            }
+
+            return 0;
         }
 
         // DELETE: api/Lists/5
         public void Delete(int id)
         {
+            ListRepository.DeleteList(id);
         }
     }
 }
