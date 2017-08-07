@@ -11,9 +11,16 @@ namespace GoogleLikeWorks.Controllers
 {
     public class TasksController : ApiController
     {
-        public IEnumerable<TasksModel> Get()
+        public IEnumerable<TasksModel> GetByList(int listID)
         {
-            var tasks = TasksRepository.GetAll();
+            var tasks = TasksRepository.GetByList(listID);
+
+            return tasks;
+        }
+
+        public IEnumerable<TasksModel> GetByPage(int pageID)
+        {
+            var tasks = TasksRepository.GetByPage(pageID);
 
             return tasks;
         }

@@ -10,11 +10,12 @@ namespace GoogleLikeWorks.Repositories
 {
     internal class PagesRepository
     {
-        internal static List<PagesModel> GetAll()
+        internal static List<PagesModel> GetByList(int listID)
         {
             using (IDbConnection db = Database.DbConnection())
             {
-                var pages = db.Query<PagesModel>("SELECT * FROM Pages").ToList();
+                var sql = @"SELECT * FROM Pages WHERE ListID = @id";
+                var pages = db.Query<PagesModel>(sql, new { id = listID }).ToList();
 
                 return pages;
             }

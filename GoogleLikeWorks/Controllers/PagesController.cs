@@ -11,9 +11,9 @@ namespace GoogleLikeWorks.Controllers
 {
     public class PagesController : BaseController
     {
-        public IEnumerable<PagesModel> Get()
+        public IEnumerable<PagesModel> GetByList(int listID)
         {
-            var pages = PagesRepository.GetAll();
+            var pages = PagesRepository.GetByList(listID);
 
             return pages;
         }
