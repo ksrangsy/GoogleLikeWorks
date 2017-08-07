@@ -234,6 +234,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListsController.cs" />
     <Compile Include="Controllers\PagesController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -250,6 +251,7 @@
     <Compile Include="Repositories\Helpers\Database.cs" />
     <Compile Include="Repositories\ListsRepository.cs" />
     <Compile Include="Repositories\PagesRepository.cs" />
+    <Compile Include="Repositories\TasksRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
