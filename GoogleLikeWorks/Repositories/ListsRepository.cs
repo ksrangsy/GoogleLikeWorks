@@ -8,9 +8,9 @@ using System.Linq;
 
 namespace GoogleLikeWorks.Repositories
 {
-    public class ListRepository
+    internal class ListsRepository
     {
-        public static List<ListsModel> GetAll()
+        internal static List<ListsModel> GetAll()
         {
             using (IDbConnection db = Database.DbConnection())
             {
@@ -20,7 +20,7 @@ namespace GoogleLikeWorks.Repositories
             }
         }
 
-        public static Tuple<ListsModel, List<PagesModel>, List<TasksModel>> Get(int id)
+        internal static Tuple<ListsModel, List<PagesModel>, List<TasksModel>> Get(int id)
         {
             using (IDbConnection db = Database.DbConnection())
             {
@@ -41,7 +41,7 @@ namespace GoogleLikeWorks.Repositories
             }
         }
 
-        public static int NewList(string title)
+        internal static int NewList(string title)
         {
             using (IDbConnection db = Database.DbConnection())
             {
@@ -54,23 +54,23 @@ namespace GoogleLikeWorks.Repositories
             }
         }
 
-        public static void DeleteList(int id)
+        internal static void DeleteList(int listID)
         {
             using (IDbConnection db = Database.DbConnection())
             {
                 var sql = @"DELETE Lists WHERE ID = @id;";
 
-                var results = db.Execute(sql, new { id = id });
+                var results = db.Execute(sql, new { id = listID });
             }
         }
 
-        public static void UpdateList(int id, string title)
+        internal static void UpdateList(int listID, string title)
         {
             using (IDbConnection db = Database.DbConnection())
             {
                 var sql = @"UPDATE Lists SET Title = @title WHERE ID = @id;";
 
-                var results = db.Execute(sql, new { id = id, title = title });
+                var results = db.Execute(sql, new { id = listID, title = title });
             }
         }
     }

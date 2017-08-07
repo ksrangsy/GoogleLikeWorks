@@ -15,7 +15,7 @@ namespace GoogleLikeWorks.Controllers
         // GET: api/Lists
         public IEnumerable<ListsModel> Get()
         {
-            var lists = ListRepository.GetAll();
+            var lists = ListsRepository.GetAll();
 
             return lists;
         }
@@ -23,7 +23,7 @@ namespace GoogleLikeWorks.Controllers
         // GET: api/Lists/5
         public Tuple<ListsModel, List<PagesModel>, List<TasksModel>> Get(int id)
         {
-            var results = ListRepository.Get(id);
+            var results = ListsRepository.Get(id);
 
             return results;
         }
@@ -31,7 +31,7 @@ namespace GoogleLikeWorks.Controllers
         // POST: api/Lists
         public int Post([FromBody]ListsModel list)
         {
-            var id = ListRepository.NewList(list.Title);
+            var id = ListsRepository.NewList(list.Title);
 
             return id;
         }
@@ -39,17 +39,17 @@ namespace GoogleLikeWorks.Controllers
         // PUT: api/Lists/5
         public int Put(int id, [FromBody]ListsModel list)
         {
-            var result = ListRepository.Get(id);
+            var result = ListsRepository.Get(id);
 
             if (result.Item1 != null)
             {
-                var resultId = ListRepository.NewList(list.Title);
+                var resultId = ListsRepository.NewList(list.Title);
 
                 return resultId;
             }
             else
             {
-                ListRepository.UpdateList(id, list.Title);
+                ListsRepository.UpdateList(id, list.Title);
             }
 
             return 0;
@@ -58,7 +58,7 @@ namespace GoogleLikeWorks.Controllers
         // DELETE: api/Lists/5
         public void Delete(int id)
         {
-            ListRepository.DeleteList(id);
+            ListsRepository.DeleteList(id);
         }
     }
 }
